@@ -82,6 +82,14 @@ public class trialController : MonoBehaviour {
 		write.Close ();
 	}
 
+	public void continueTrial () {
+
+		changeDesktop ();
+		spawnMouse ();
+		gameObject.GetComponent<timer>().unpauseTime();
+
+	}
+
 	public void nextStep () {
 
 		//Add the time to the record
@@ -104,14 +112,16 @@ public class trialController : MonoBehaviour {
 					desktopCount = 0;
 					printData ();
 					Application.LoadLevel("testingCompleted");
+					return;
 
 				}
 			}
 		
 		}
-		changeDesktop ();
-		spawnMouse ();
-		gameObject.GetComponent<timer>().unpauseTime();
+
+		GameObject.Find ("clicktocontinue").GetComponent<clickToContinue> ().show ();
+
+
 	}
 
 	string descriptiveMethod(int i){
