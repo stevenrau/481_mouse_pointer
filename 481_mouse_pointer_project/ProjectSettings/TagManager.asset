@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - desktop
+  - region
+  - regionSet
   layers:
   - Default
   - TransparentFX
