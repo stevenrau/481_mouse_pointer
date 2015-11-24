@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+using System.Globalization;
 
 public class trialController : MonoBehaviour {
 
@@ -104,7 +105,11 @@ public class trialController : MonoBehaviour {
 	}
 
 	void printData() {
-		TextWriter write = new StreamWriter("data.csv");
+
+		//The csv file will be named YEAR-MONTH-DAY_HOUR-MINUTE
+		string curDateTime = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm") + ".csv";
+
+		TextWriter write = new StreamWriter(curDateTime);
 
 		write.WriteLine ("time,method,background");
 
