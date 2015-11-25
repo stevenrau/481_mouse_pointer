@@ -214,6 +214,16 @@ public class trialController : MonoBehaviour {
 
 		GameObject.Find ("clicktocontinue").GetComponent<clickToContinue> ().show ();
 
+		//added to show a previw of the mouse type before each trial
+		GameObject previewMouse = (GameObject)Instantiate (cursor[cursorCount]);
+		previewMouse.transform.position = new Vector3 (0f, -1.0f, -4.0f);
+		previewMouse.name = "previewMouse";
+		previewMouse.GetComponent<SpriteRenderer> ().sortingOrder = 150;
+		previewMouse.GetComponent<Collider2D> ().enabled = false;
+
+		//similarily, show the word target beside the preview mouse pointer
+
+
 
 	}
 
