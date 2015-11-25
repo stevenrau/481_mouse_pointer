@@ -22,6 +22,9 @@ public class trialController : MonoBehaviour {
 	
 	void Start () {
 
+		reshuffle (cursor);
+		reshuffle (desktop);
+
 		totalTrials = (desktop.Length * cursor.Length) * subTrialCount;
 		times = new recordSet (totalTrials);
 
@@ -35,6 +38,18 @@ public class trialController : MonoBehaviour {
 
 	void Update () {
 	
+	}
+
+	void reshuffle(GameObject[] methods)
+	{
+		// Knuth shuffle algorithm :: courtesy of Wikipedia :)
+		for (int t = 0; t < methods.Length; t++ )
+		{
+			GameObject tmp = methods[t];
+			int r = Random.Range(t, methods.Length);
+			methods[t] = methods[r];
+			methods[r] = tmp;
+		}
 	}
 
 	void changeDesktop () {
@@ -140,6 +155,7 @@ public class trialController : MonoBehaviour {
 
 			if (desktopCount == (desktop.Length)) {
 				desktopCount = 0;
+				reshuffle (desktop);
 				cursorCount++;
 
 				if (cursorCount == (cursor.Length)) {
