@@ -20,6 +20,12 @@ public class trialController : MonoBehaviour {
 	
 	private int totalTrials;
 
+	private string methodName = "";
+	public string backgroundName = "";
+
+	private int trialCount = 0;
+	private int skipCount = 0;
+
 	
 	void Start () {
 
@@ -27,18 +33,23 @@ public class trialController : MonoBehaviour {
 		reshuffle (desktop);
 
 		totalTrials = (desktop.Length * cursor.Length) * subTrialCount;
-		times = new recordSet (totalTrials);
+		times = new recordSet (totalTrials + 2000);
 
 
 		gameObject.GetComponent<timer>().unpauseTime();
 		changeDesktop ();
 		spawnMouse ();
 
+
+
 	}
 	
 
 	void Update () {
-	
+		if (Input.GetKeyDown ("space") && !gameObject.GetComponent<timer>().isPaused ()) {
+			skipStep();
+			Destroy(GameObject.FindGameObjectWithTag("cursor"));
+		}
 	}
 
 	void reshuffle(GameObject[] methods)
@@ -59,6 +70,8 @@ public class trialController : MonoBehaviour {
 
 		GameObject newDesktop = (GameObject)Instantiate (desktop[desktopCount], transform.position, transform.rotation);
 
+
+
 		GameObject newRegionSet = (GameObject)Instantiate (regionSet[desktopCount], transform.position, transform.rotation);
 
 		GameObject[] regions = GameObject.FindGameObjectsWithTag ("region");
@@ -67,6 +80,8 @@ public class trialController : MonoBehaviour {
 		{
 			regions[i].GetComponent<BoxCollider2D>().enabled = false;
 		}
+
+
 	}
 
 	void destroyDesktop () {
@@ -85,6 +100,7 @@ public class trialController : MonoBehaviour {
 		for(var i = 0 ; i < gameObjects.Length ; i ++)
 		{
 			Destroy(gameObjects[i]);
+
 		}
 	}
 	
@@ -117,6 +133,9 @@ public class trialController : MonoBehaviour {
 
 		GameObject newMouse = (GameObject)Instantiate (cursor[cursorCount], cursorDestination.position, cursorDestination.rotation);
 
+		methodName = GameObject.FindGameObjectWithTag ("cursor").transform.name;
+
+
 	}
 
 	void printData() {
@@ -126,11 +145,23 @@ public class trialController : MonoBehaviour {
 
 		TextWriter write = new StreamWriter(curDateTime);
 
-		write.WriteLine ("time,method,background");
+		write.WriteLine ("trial number,time,method,background,skipped?");
 
-		for (int i=0;i<totalTrials;i++) {
+		string isSkip;
+
+		for (int i=0;i<totalTrials+skipCount;i++) {
 			record r = times.getItem (i);
-			write.WriteLine (r.getTime() + "," + descriptiveMethod(r.getMethod()) + "," + descriptiveBackground(r.getBackground()));
+
+			if (r.getSkip ()) {
+				isSkip = "skipped";
+			} else {
+				isSkip = " ";
+			}
+
+			string mName = r.getMethodName().Replace("(clone)", "");
+			string bName = r.getBackgroundName().Replace("(clone)", "");
+
+			write.WriteLine (r.getNumber() + "," + r.getTime() + "," + mName + "," + bName + ", " + isSkip);
 		}
 
 		write.Close ();
@@ -144,12 +175,19 @@ public class trialController : MonoBehaviour {
 
 	}
 
+
+
 	public void nextStep () {
 
 		//Add the time to the record
 		gameObject.GetComponent<timer>().pauseTime();
 		float tempTime = gameObject.GetComponent<timer> ().getTime ();
-		times.addRecord (tempTime, cursorCount, desktopCount);
+
+		trialCount ++;
+
+		backgroundName = GameObject.FindGameObjectWithTag ("desktop").transform.name;
+		times.addRecord (tempTime, methodName, backgroundName, trialCount, false);
+		Debug.Log (trialCount + ", " + methodName + ", " + backgroundName);
 		gameObject.GetComponent<timer> ().resetTime ();
 
 		//If the last trial of the current type is finished, move to the next cursor desktop. If there is no next desktop, move to the next cursor method
@@ -178,6 +216,51 @@ public class trialController : MonoBehaviour {
 
 
 	}
+
+
+	public void skipStep () {
+		
+		//Add the time to the record
+		gameObject.GetComponent<timer>().pauseTime();
+		float tempTime = gameObject.GetComponent<timer> ().getTime ();
+		
+		trialCount ++;
+		skipCount ++;
+
+		reshuffle (desktop);
+		
+		backgroundName = GameObject.FindGameObjectWithTag ("desktop").transform.name;
+		times.addRecord (tempTime, methodName, backgroundName, trialCount, true);
+		Debug.Log (trialCount + ", " + methodName + ", " + backgroundName);
+		gameObject.GetComponent<timer> ().resetTime ();
+		
+		//If the last trial of the current type is finished, move to the next cursor desktop. If there is no next desktop, move to the next cursor method
+//		counter++;
+//		if (counter == subTrialCount) {
+//			counter = 0;
+//			//desktopCount++;
+//			
+//			if (desktopCount == (desktop.Length)) {
+//				desktopCount = 0;
+//				reshuffle (desktop);
+//				//cursorCount++;
+//				
+//				if (cursorCount == (cursor.Length)) {
+//					cursorCount = 0;
+//					printData ();
+//					Application.LoadLevel("testingCompleted");
+//					return;
+//					
+//				}
+//			}
+//			
+//		}
+		
+		GameObject.Find ("clicktocontinue").GetComponent<clickToContinue> ().show ();
+		
+		
+	}
+
 
 	string descriptiveMethod(int i){
 		string temp = "none";

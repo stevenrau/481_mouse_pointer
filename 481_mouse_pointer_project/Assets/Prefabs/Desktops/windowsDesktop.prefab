@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 458220}
   - 212: {fileID: 21233410}
   m_Layer: 0
-  m_Name: clutteredDesktop
+  m_Name: windowsDesktop
   m_TagString: desktop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 474500}
   - 212: {fileID: 21291728}
   m_Layer: 0
-  m_Name: busyDesktop
+  m_Name: cityDesktop
   m_TagString: desktop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -85,6 +85,78 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &264071436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 264071439}
+  - 114: {fileID: 264071438}
+  - 114: {fileID: 264071437}
+  m_Layer: 0
+  m_Name: Trial ControllerTEST
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &264071437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 264071436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede49e087f14e4551bc2195bbe904171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  desktop:
+  - {fileID: 151606, guid: 6912dc2c1e470478e8972b0dfb27518f, type: 2}
+  - {fileID: 126554, guid: 98cbef18037f74f77a687d079479fad9, type: 2}
+  - {fileID: 123494, guid: 330108eaa49e644f7938fb075bbb893e, type: 2}
+  regionSet:
+  - {fileID: 164902, guid: 7db536bb6443345fd974db2c54e15824, type: 2}
+  - {fileID: 164902, guid: 7db536bb6443345fd974db2c54e15824, type: 2}
+  - {fileID: 164902, guid: 7db536bb6443345fd974db2c54e15824, type: 2}
+  mouseSpawn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  subTrialCount: 1
+  cursor:
+  - {fileID: 192262, guid: 5d857b98171cb4061a27aa314f545aad, type: 2}
+  - {fileID: 142628, guid: 15f0608c3cfe44608bd97825fba75aa7, type: 2}
+  - {fileID: 133010, guid: b1592b1c3b6494871a4922f7e1cd8e3b, type: 2}
+  backgroundName: 
+--- !u!114 &264071438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 264071436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940dde4c074994a8792b63bc4fd734b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 0
+--- !u!4 &264071439
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 264071436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!1 &1458839301
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +236,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1555644012
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +323,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &1555644018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +388,7 @@ MonoBehaviour:
   - {fileID: 148368, guid: 405e276c20d8545aa842ee4a84a80f0e, type: 2}
   - {fileID: 189818, guid: b583dbcb6de6d4c05aa2a05d7fec2c71, type: 2}
   - {fileID: 189514, guid: da427be4bffde485fb8733303b3d4fcb, type: 2}
+  backgroundName: 
 --- !u!114 &1966861590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,4 +412,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2

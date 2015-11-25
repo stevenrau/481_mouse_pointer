@@ -4,36 +4,56 @@ using System.Collections;
 public class record {
 
 	private float timeTaken;
-	private int method;
-	private int background;
+	private string methodName;
+	private string backgroundName;
+	private int number;
+	private bool skip;
 
-	public record(float t, int m, int b) {
+	public record(float t, string mn, string bn, int n, bool skip) {
 		setTime (t);
-		setMethod (m);
-		setBackground (b);
+		setBackgroundName (bn);
+		setMethodName (mn);
+		setNumber (n);
+		setSkip (skip);
+	}
+
+	public void setSkip (bool s) {
+		skip = s;
+	}
+
+	public bool getSkip () {
+		return skip;
+	}
+
+	public void setNumber(int n) {
+		number = n;
+	}
+
+	public int getNumber() {
+		return number;
 	}
 
 	public float getTime() {
 		return timeTaken;
 	}
 
-	public int getMethod() {
-		return method;
-	}
-
-	public int getBackground() {
-		return background;
-	}
-
 	public void setTime(float t) {
 		timeTaken = t;
 	}
 
-	public void setMethod(int m) {
-		method = m;
+	public void setBackgroundName (string s) {
+		backgroundName = s;
 	}
 
-	public void setBackground(int b) {
-		background = b;
+	public string getBackgroundName () {
+		return backgroundName;
+	}
+
+	public void setMethodName (string s) {
+		methodName = s;
+	}
+	
+	public string getMethodName () {
+		return methodName;
 	}
 }

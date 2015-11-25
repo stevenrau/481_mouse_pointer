@@ -29,8 +29,8 @@ public class recordSet {
 		set = new record[length];
 	}
 
-	public void addRecord (float t, int m, int b) {
-		record newRecord = new record (t,m,b);
+	public void addRecord (float t, string mn, string bn, int n, bool skip) {
+		record newRecord = new record (t,mn,bn,n,skip);
 		set [index] = newRecord;
 		index ++;
 	}

@@ -33,4 +33,8 @@ public class timer : MonoBehaviour {
 	public void unpauseTime() {
 		pause = false;
 	}
+
+	public bool isPaused() {
+		return pause;
+	}
 }
