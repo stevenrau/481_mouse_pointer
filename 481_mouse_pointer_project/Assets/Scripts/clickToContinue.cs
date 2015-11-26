@@ -17,8 +17,14 @@ public class clickToContinue : MonoBehaviour {
 
 		//destroy the preview mouse
 		Destroy (GameObject.Find ("previewMouse"));
+		Destroy (GameObject.Find ("target"));
 
-		GameObject.Find ("Trial Controller").GetComponent<trialController> ().continueTrial ();
+		if (GameObject.Find ("Trial Controller")) {
+			GameObject.Find ("Trial Controller").GetComponent<trialController> ().continueTrial ();
+		} else if (GameObject.Find ("Practice Controller")) {
+			GameObject.Find ("Practice Controller").GetComponent<practiceController> ().continueTrial ();
+		}
+
 		//Destroy (gameObject);
 
 		gameObject.GetComponent<SpriteRenderer> ().enabled = false;

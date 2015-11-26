@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: .800000012
-  startScale: 8
+  startScale: 13
 --- !u!212 &21228528
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -204,6 +204,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_SortingOrder
       value: 149
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: startScale
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
