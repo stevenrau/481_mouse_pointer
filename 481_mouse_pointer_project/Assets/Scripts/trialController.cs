@@ -5,6 +5,12 @@ using System.Globalization;
 
 public class trialController : MonoBehaviour {
 
+	private readonly string[] methodNames = { "cursor", "cursorBig", "cursorAnimated",
+		                                     "cursorInverted", "cursorInvertedBig", "cursorInvertedAnimated",
+	                                         "cursorBigAnimated", "cursorInvertedBigAnimated"};
+
+	private readonly int numBackgrounds = 3;
+
 	public GameObject[] desktop;
 	public GameObject[] regionSet;
 	public Transform[] mouseSpawn;
@@ -150,7 +156,9 @@ public class trialController : MonoBehaviour {
 
 		GameObject newMouse = (GameObject)Instantiate (cursor[cursorCount], cursorDestination.position, cursorDestination.rotation);
 
+
 		methodName = GameObject.FindGameObjectWithTag ("cursor").transform.name;
+
 
 
 	}
@@ -162,12 +170,24 @@ public class trialController : MonoBehaviour {
 
 		TextWriter write = new StreamWriter(curDateTime);
 
-		write.WriteLine ("trial number,time,method,background,skipped?");
+		write.WriteLine ("trial number,time,method,background,skipped?,average,standard deviation");
 
-		string isSkip;
+		record r = null;
+		string mName = "";
+		string bName = "";
+		string isSkip = "";
+		float curTime = 0.0f;
+		float curTotal = 0.0f;
+		int numTrials = 0;
+		float[] methodTrials = new float[subTrialCount * numBackgrounds];
 
 		for (int i=0;i<totalTrials+skipCount;i++) {
-			record r = times.getItem (i);
+
+			r = times.getItem (i);
+			curTime = r.getTime();
+
+			mName = r.getMethodName().Replace("(Clone)", "");
+			bName = r.getBackgroundName().Replace("(Clone)", "");
 
 			if (r.getSkip ()) {
 				isSkip = "skipped";
@@ -175,10 +195,39 @@ public class trialController : MonoBehaviour {
 				isSkip = " ";
 			}
 
-			string mName = r.getMethodName().Replace("(clone)", "");
-			string bName = r.getBackgroundName().Replace("(clone)", "");
+			// If this trial wasn't skipped, add the time to the total and count it as a trial
+			if (!r.getSkip())
+			{
+				methodTrials[numTrials] = curTime;
+				curTotal += curTime;
+				numTrials++;
+			}
 
-			write.WriteLine (r.getNumber() + "," + r.getTime() + "," + mName + "," + bName + ", " + isSkip);
+			// Write the trial to the file (last two spots are the avg and std dev vals that get printed at the end of each method)
+			write.WriteLine (r.getNumber() + "," + r.getTime() + "," + mName + "," + bName + ", " + isSkip, " , , "); 
+
+			// If that was the last trial for that method, print out the avg and std. dev and reset counters
+			if (numTrials == subTrialCount * numBackgrounds)
+			{
+				float stdDev = 0.0f;
+				float sumDiffSquared = 0.0f;
+				float mean = curTotal/numTrials;
+
+				for (int j = 0; j < subTrialCount * numBackgrounds; j++)
+				{
+					// Get the difference of the current time and the mean and square it.
+					sumDiffSquared += Mathf.Pow((methodTrials[j] - mean), 2);
+				}
+
+				//Complete the std dev. calculation with the sum of the squared differences
+				stdDev = Mathf.Sqrt(sumDiffSquared/(subTrialCount * numBackgrounds));
+
+				write.WriteLine (" , , , , ," + mean + "," + stdDev);
+
+				// Reset the counters
+				curTotal = 0.0f;
+				numTrials = 0;
+			}
 		}
 
 		write.Close ();
@@ -190,6 +239,10 @@ public class trialController : MonoBehaviour {
 		spawnMouse ();
 		gameObject.GetComponent<timer>().unpauseTime();
 
+	}
+
+	public void setMethodName (string s) {
+		methodName = s;
 	}
 
 
