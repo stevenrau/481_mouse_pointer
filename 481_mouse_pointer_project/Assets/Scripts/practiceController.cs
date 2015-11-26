@@ -143,7 +143,7 @@ public class practiceController : MonoBehaviour {
 	void printData() {
 		
 		//The csv file will be named YEAR-MONTH-DAY_HOUR-MINUTE
-		string curDateTime = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm") + ".csv";
+		string curDateTime = "practice_" + System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm") + ".csv";
 		
 		TextWriter write = new StreamWriter(curDateTime);
 		

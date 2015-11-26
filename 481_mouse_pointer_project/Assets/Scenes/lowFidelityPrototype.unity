@@ -37,9 +37,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
---- !u!127 &3
-LevelGameManager:
-  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -68,6 +65,7 @@ LightmapSettings:
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
+    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
@@ -253,6 +251,7 @@ GameObject:
   - 124: {fileID: 1555644014}
   - 81: {fileID: 1555644013}
   - 114: {fileID: 1555644018}
+  - 114: {fileID: 1555644019}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -339,6 +338,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleImage: {fileID: 2800000, guid: de665c58db72866459d11965e19f4fd1, type: 3}
+--- !u!114 &1555644019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555644012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb8f65dfa64e4377bb11be5357ca633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1966861588
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,16 +391,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  subTrialCount: 1
+  subTrialCount: 10
   cursor:
   - {fileID: 192262, guid: 5d857b98171cb4061a27aa314f545aad, type: 2}
   - {fileID: 142628, guid: 15f0608c3cfe44608bd97825fba75aa7, type: 2}
   - {fileID: 133010, guid: b1592b1c3b6494871a4922f7e1cd8e3b, type: 2}
   - {fileID: 110110, guid: 7d7a0c5685d084be48fe64975b2452fd, type: 2}
-  - {fileID: 121608, guid: 54f789d93f32242879cd8c892c62e548, type: 2}
-  - {fileID: 148368, guid: 405e276c20d8545aa842ee4a84a80f0e, type: 2}
-  - {fileID: 189818, guid: b583dbcb6de6d4c05aa2a05d7fec2c71, type: 2}
-  - {fileID: 189514, guid: da427be4bffde485fb8733303b3d4fcb, type: 2}
   backgroundName: 
   targetObject: {fileID: 158126, guid: 54574316deb55485abefa008c48a5665, type: 2}
 --- !u!114 &1966861590

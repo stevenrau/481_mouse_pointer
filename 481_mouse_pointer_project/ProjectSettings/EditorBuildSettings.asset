@@ -6,8 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/practice.unity
+  - enabled: 1
     path: Assets/Scenes/clickToStart.unity
   - enabled: 1
     path: Assets/Scenes/lowFidelityPrototype.unity
   - enabled: 1
     path: Assets/Scenes/testingCompleted.unity
+  - enabled: 1
+    path: Assets/Scenes/testingScene.unity
