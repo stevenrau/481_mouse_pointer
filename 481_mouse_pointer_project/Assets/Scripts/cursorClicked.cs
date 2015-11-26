@@ -14,7 +14,12 @@ public class cursorClicked : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		GameObject.Find ("Trial Controller").GetComponent<trialController> ().nextStep ();
+
+		if (GameObject.Find ("Trial Controller")) {
+			GameObject.Find ("Trial Controller").GetComponent<trialController> ().nextStep ();
+		} else if (GameObject.Find ("Practice Controller")) {
+			GameObject.Find ("Practice Controller").GetComponent<practiceController> ().nextStep ();
+		}
 		Destroy (gameObject);
 	}
 }
