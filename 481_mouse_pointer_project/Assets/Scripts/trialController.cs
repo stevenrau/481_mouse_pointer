@@ -156,7 +156,9 @@ public class trialController : MonoBehaviour {
 
 		GameObject newMouse = (GameObject)Instantiate (cursor[cursorCount], cursorDestination.position, cursorDestination.rotation);
 
+
 		methodName = GameObject.FindGameObjectWithTag ("cursor").transform.name;
+
 
 
 	}
@@ -237,6 +239,10 @@ public class trialController : MonoBehaviour {
 		spawnMouse ();
 		gameObject.GetComponent<timer>().unpauseTime();
 
+	}
+
+	public void setMethodName (string s) {
+		methodName = s;
 	}
 
 
