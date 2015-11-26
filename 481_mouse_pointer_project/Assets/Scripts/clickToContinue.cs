@@ -14,6 +14,10 @@ public class clickToContinue : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
+
+		//destroy the preview mouse
+		Destroy (GameObject.Find ("previewMouse"));
+
 		GameObject.Find ("Trial Controller").GetComponent<trialController> ().continueTrial ();
 		//Destroy (gameObject);
 
