@@ -309,9 +309,6 @@ public class trialController : MonoBehaviour {
 		trialCount ++;
 		skipCount ++;
 
-		reshuffle (desktop);
-		
-		backgroundName = GameObject.FindGameObjectWithTag ("desktop").transform.name;
 		times.addRecord (tempTime, methodName, backgroundName, trialCount, true);
 		Debug.Log (trialCount + ", " + methodName + ", " + backgroundName);
 		gameObject.GetComponent<timer> ().resetTime ();
